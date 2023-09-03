@@ -8,13 +8,64 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CofesiónDeAmor</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: absolute;
+        }
+
+        .heart {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            transform: rotate(-45deg);
+            background-color: red;
+            animation: float 3s ease infinite;
+            animation-fill-mode: forwards;
+            /* Mantener la última posición en la animación */
+            opacity: 1;
+            /* Añadir opacidad inicial */
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <canvas id="canvas" width="1024px" height="768">
-        Apoyame suscribiendote a mi canal de YouTube :3
-
-    </canvas>
+<body class="container" id="container"> 
     <!-- <div style="color:red;font-size:45px;position:absolute;top:400px;left:200px">Pragya <i class='fa fa-heart'></i> </div> -->
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
@@ -23,18 +74,18 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Hola querida<i class='fa fa-heart text-danger '></i></h4>
+                    <h4 class="modal-title">Para mi amorcito<i class='fa fa-heart text-danger '></i></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Esto es para ti, para que sepas que eres lo mas importante para mi.
+                    Esto es para ti, para mi pedacito de alma. ✨
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <p style="position:absolute;left:15px"><small class='text-muted'>Para ti con todo mi amor<i
+                    <p style="position:absolute;left:15px"><small class='text-muted'>Para ti con todo mi amor 💕<i
                                 class='fa fa-heart text-danger'></i> </small></p>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -49,7 +100,7 @@
 
     </div>
 
-    <button type="button" style="position:absolute;right:200px;bottom:300px" class="btn btn-danger btn-lg"
+    <button type="button" style="position:absolute;right:200px;bottom:-300px" class="btn btn-danger btn-lg"
         data-toggle="modal" data-target="#feelings"> <i class='fa fa-heart '></i>Dale Click Aquí</button>
 
     <div class="modal fade" id="feelings">
@@ -64,24 +115,29 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">No puedo evitar recordarte una y otra vez cuán afortunado soy de tenerte en mi
-                    vida mi niña preciosa.💓 Eres, sin lugar a dudas, lo más lindo que tengo. Cada día a tu lado es un regalo que valoro
+                    vida mi niña preciosa.💓 Eres, sin lugar a dudas, lo más lindo que tengo. Cada día a tu lado es un
+                    regalo que valoro
                     más de lo que puedo expresar.
                     <br>
-                    Eres la razón por la que mi corazón late con entusiasmo y alegría ✨. Tu sonrisa de princesita ilumina mi mundo y tu
+                    Eres la razón por la que mi corazón late con entusiasmo y alegría ✨. Tu sonrisa de princesita
+                    ilumina mi mundo y tu
                     presencia llena de amor ha transformado mi vida de una manera que nunca imaginé.
-<br>
-                    Estoy profundamente enamorado de ti mi amor,💓 y quiero que lo sepas en cada fibra de mi ser. Eres mi fuente
-                    de felicidad constante, y estoy agradecido por cada momento que compartimos juntos, quedate y se mi ultimo amor.💕
-<br>
+                    <br>
+                    Estoy profundamente enamorado de ti mi amor,💓 y quiero que lo sepas en cada fibra de mi ser. Eres
+                    mi fuente
+                    de felicidad constante, y estoy agradecido por cada momento que compartimos juntos, quedate y se mi
+                    ultimo amor.💕
+                    <br>
                     Prometo seguir amándote y cuidándote con todo mi corazón, porque no hay nada que desee más en este
                     mundo que hacerte feliz mi solecito hermoso ✨.
 
-                    Con todo mi amor para ti, besos en esas nalgas 💕</div>
+                    Con todo mi amor para ti, besos en esas nalgas 💕
+                </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <p style="position:absolute;left:15px"><small class='text-muted'>Si quieres me dejo hacer un hijo amor ✨<i
-                                class='fa fa-heart text-danger'></i> </small></p>
+                    <p style="position:absolute;left:15px"><small class='text-muted'>Si quieres me dejo hacer un hijo
+                            amor ✨<i class='fa fa-heart text-danger'></i> </small></p>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
 
@@ -171,6 +227,22 @@
 
         });
     }, 17);
+</script>
+<script>
+    const container = document.getElementById('container');
+
+    document.addEventListener('mousemove', (e) => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        container.appendChild(heart);
+
+        // Elimina el corazón después de un tiempo para evitar la acumulación
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+    });
 </script>
 
 </html>
